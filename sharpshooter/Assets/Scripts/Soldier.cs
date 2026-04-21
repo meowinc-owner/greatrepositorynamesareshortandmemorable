@@ -6,6 +6,7 @@ public class Soldier : MonoBehaviour
     [Header("︻╦̵̵̿╤── VARIABLES")] protected Vector2 aimPosition;
     public float speed = 10f;
     public float angle = 0f;
+    public float hp = 5f;
     protected Rigidbody2D rb;
     protected bool isFiring = false;
     protected Vector2 movementinput;
@@ -71,6 +72,15 @@ public class Soldier : MonoBehaviour
         shotTimer = 0;
         GameObject newBullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
         Bullet b = newBullet.GetComponent<Bullet>();
-        b.Init(angle);
+        b.Init(angle, gameObject.tag);
+        
+    }
+    public virtual void takeDamage(float damage)
+    {
+        hp -= damage;
+        if (hp <= 0f)
+        {
+            Destroy(gameObject);
+        }
     }
 }

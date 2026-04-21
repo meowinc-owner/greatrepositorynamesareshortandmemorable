@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3293202898694094963}
   m_Layer: 0
   m_Name: BlueEnemy
-  m_TagString: Untagged
+  m_TagString: Emememy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -201,10 +201,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a56dcbf72fff4b3d89311217100a0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  speed: 5
+  speed: 2.5
   angle: 0
+  hp: 5
   bulletPrefab: {fileID: 2974937759721360397, guid: 698fa65227379ed3a8e92c2dd81b8a45, type: 3}
   bulletSpawn: {fileID: 5078857214472034398}
   shotCooldown: 1
   minWanderTime: 0
   maxWanderTime: 2.5
+  IdleTime: 0.5
+  TurnSpeed: 15
+  visionRange: 6.7
+  target: {fileID: 0}

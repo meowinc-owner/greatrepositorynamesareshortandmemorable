@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2303069927755309967}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,10 +172,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   speed: 10
   angle: 0
-  actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   bulletPrefab: {fileID: 2974937759721360397, guid: 698fa65227379ed3a8e92c2dd81b8a45, type: 3}
   bulletSpawn: {fileID: 2765897039652116325}
   shotCooldown: 1
+  actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &4130741467915452570
 GameObject:
   m_ObjectHideFlags: 0

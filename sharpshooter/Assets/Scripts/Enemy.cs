@@ -1,3 +1,4 @@
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class Enemy : Soldier
@@ -14,6 +15,9 @@ public class Enemy : Soldier
     private float TurnTime = 0f;
     private float OldAngle;
     private float NewAngle;
+    private float targetAngle;
+    public float visionRange = 5.6f;
+    public Transform target;
 
     private enum EnemyState
     {
@@ -28,14 +32,16 @@ public class Enemy : Soldier
     {
         base.Start();
         currentWanderTime =  Random.Range(minWanderTime, maxWanderTime);
-        angle = Random.Range(0f, 360f);
-        movementinput = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
-        aimPosition = (Vector2)transform.position - movementinput; // FIX LATER, CHANGE - TO +
+        targetAngle = Random.Range(0f, 360f);
+        movementinput = new Vector2(Mathf.Cos(targetAngle * Mathf.Deg2Rad), Mathf.Sin(targetAngle * Mathf.Deg2Rad));
+        aimPosition = (Vector2)transform.position + movementinput;
+        target = GameObject.FindGameObjectWithTag("Player").transform; //change if we add co-op
     }
 
     // Update is called once per frame
     protected override void Update()
     {
+        CheckVisionRange();
         switch (state)
         {
             case EnemyState.WANDER:
@@ -48,6 +54,7 @@ public class Enemy : Soldier
                 TURN();
                 break;
             case EnemyState.GETOVERHERE:
+                chase();
                 break;
         }
         base.Update();
@@ -55,17 +62,17 @@ public class Enemy : Soldier
 
     private void WANDER()
     {
-        movementinput = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
-        aimPosition = (Vector2)transform.position - movementinput; // FIX LATER, CHANGE - TO +
+        movementinput = new Vector2(Mathf.Cos(targetAngle * Mathf.Deg2Rad), Mathf.Sin(targetAngle * Mathf.Deg2Rad));
+        aimPosition = (Vector2)transform.position + movementinput;
         wanderTimer += Time.deltaTime;
         if (wanderTimer > currentWanderTime)
         {
             wanderTimer = 0f;
             NewAngle = Random.Range(0f, 360f);
-            OldAngle = angle;
+            OldAngle = targetAngle;
             float diff = Mathf.DeltaAngle(OldAngle, NewAngle);
-            TurnTime = TurnSpeed / Mathf.Abs(diff);
-            movementinput = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+            TurnTime = Mathf.Abs(diff) / TurnSpeed;
+            movementinput = new Vector2(Mathf.Cos(targetAngle * Mathf.Deg2Rad), Mathf.Sin(targetAngle * Mathf.Deg2Rad));
             currentWanderTime =  Random.Range(minWanderTime, maxWanderTime);
             state = EnemyState.IDLE;
         }
@@ -74,22 +81,76 @@ public class Enemy : Soldier
     private void IDLE()
     {
         movementinput = Vector2.zero;
-        PauseTimer += Time.deltaTime;
-        if (PauseTimer > PauseTime)
+        IdleTimer += Time.deltaTime;
+        if (IdleTimer > IdleTime)
         {
-            PauseTimer = 0f; 
+            IdleTimer = 0f; 
             state = EnemyState.TURN;
         }
     }
     private void TURN()
-    {
+    { 
         movementinput = Vector2.zero;
-        aimPosition = (Vector2)transform.position - new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+        aimPosition = (Vector2)transform.position + new Vector2(Mathf.Cos(targetAngle * Mathf.Deg2Rad), Mathf.Sin(targetAngle * Mathf.Deg2Rad));
+        targetAngle = Mathf.LerpAngle(OldAngle, NewAngle, TurnTimer / TurnTime);
         TurnTimer += Time.deltaTime;
         if (TurnTimer > TurnTime)
         {
             TurnTimer = 0f; 
             state = EnemyState.WANDER;
         }
+    }
+
+    private void CheckVisionRange()
+    {
+        if (target == null)
+        {
+            return;
+            
+        }
+        Vector3 toTarget = target.position - transform.position;
+        toTarget.z = 0f;
+        float distance = toTarget.magnitude;
+        if (distance <= visionRange)
+        {
+            state = EnemyState.GETOVERHERE;
+        }
+        else if (state == EnemyState.GETOVERHERE)
+        {
+            isFiring = false;
+            state = EnemyState.IDLE;
+            TurnTimer = 0f;
+            wanderTimer = 0f;
+            IdleTimer = 0f;
+            NewAngle = Random.Range(0f, 360f);
+            OldAngle = angle;
+            float diff = Mathf.DeltaAngle(OldAngle, NewAngle);
+            TurnTime = Mathf.Abs(diff) / TurnSpeed;
+            currentWanderTime =  Random.Range(minWanderTime, maxWanderTime);
+            targetAngle = angle;
+        }
+    }
+
+    private void chase()
+    {
+        Vector3 toTarget = target.position - transform.position;
+        toTarget.z = 0f;
+        float distance = toTarget.magnitude;
+        aimPosition = (Vector2)transform.position + (Vector2)toTarget.normalized;
+        isFiring = true;
+        if (distance <= visionRange / 3)
+        {
+            movementinput = -(Vector2)toTarget.normalized;
+        }
+        else
+        {
+            movementinput = (Vector2)toTarget.normalized;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, visionRange);
     }
 }
