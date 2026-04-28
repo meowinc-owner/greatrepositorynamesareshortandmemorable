@@ -36,6 +36,7 @@ public class Enemy : Soldier
         movementinput = new Vector2(Mathf.Cos(targetAngle * Mathf.Deg2Rad), Mathf.Sin(targetAngle * Mathf.Deg2Rad));
         aimPosition = (Vector2)transform.position + movementinput;
         target = GameObject.FindGameObjectWithTag("Player").transform; //change if we add co-op
+        transform.parent = GameObject.Find("Enemies").transform;
     }
 
     // Update is called once per frame

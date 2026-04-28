@@ -12,6 +12,15 @@ public class Soldier : MonoBehaviour
     protected Vector2 movementinput;
     protected Vector2 targetVelocity = Vector2.zero;
     
+    [Header("︻╦̵̵̿╤── ANIMSSS")]
+    bool IsDead = false;
+    bool IsMoving = false;
+    bool IsHit = false;
+    protected Animator animator;
+    float hitTimer;
+    protected SpriteRenderer spriteRenderer;
+    
+    
     [Header("︻╦̵̵̿╤── Bullet this thing js shot ongod frfr")] 
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
@@ -22,6 +31,8 @@ public class Soldier : MonoBehaviour
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>(); 
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,8 +46,14 @@ public class Soldier : MonoBehaviour
     }
     protected virtual void FixedUpdate()
     {
+        Animate();
+        if (IsDead)
+        {
+            return;
+        }
         Move();
         Aim();
+        
     }
     
     protected virtual void Move()
@@ -80,7 +97,32 @@ public class Soldier : MonoBehaviour
         hp -= damage;
         if (hp <= 0f)
         {
-            Destroy(gameObject);
+            IsDead = true;
+            
+            Destroy(gameObject, 0.5f);
+        }
+        else
+        {
+            IsHit = true;
+            hitTimer = 0.5f;
+        }
+    }
+
+    protected virtual void Animate()
+    {
+        IsMoving = rb.linearVelocity != Vector2.zero;
+        animator.SetBool("isMoving", IsMoving);
+        animator.SetBool("isDead", IsDead);
+        if (IsHit)
+        {
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+            hitTimer -= Time.fixedDeltaTime;
+            if (hitTimer <= 0)
+            {
+                IsHit = false;
+                spriteRenderer.enabled = true;
+                
+            }
         }
     }
 }
