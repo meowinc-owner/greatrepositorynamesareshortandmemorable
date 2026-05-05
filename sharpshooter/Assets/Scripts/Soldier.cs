@@ -19,13 +19,11 @@ public class Soldier : MonoBehaviour
     protected Animator animator;
     float hitTimer;
     protected SpriteRenderer spriteRenderer;
-    
-    
-    [Header("︻╦̵̵̿╤── Bullet this thing js shot ongod frfr")] 
-    public GameObject bulletPrefab;
-    public Transform bulletSpawn;
-    public float shotCooldown = 1f;
-    protected float shotTimer;
+
+    [Header("︻╦̵̵̿╤── veapons")]
+    public Transform hands;
+
+    public Weapon currentWeapon;
     
     
     protected virtual void Start()
@@ -38,11 +36,7 @@ public class Soldier : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        shotTimer += Time.deltaTime;
-        if (isFiring)
-        {
-            Shoot();
-        }
+        UpdateWeapon();
     }
     protected virtual void FixedUpdate()
     {
@@ -79,19 +73,18 @@ public class Soldier : MonoBehaviour
         
     }
 
-    protected virtual void Shoot()
+    protected virtual void UpdateWeapon()
     {
-        if (shotTimer < shotCooldown)
-        {
-            return;
-        }
-
-        shotTimer = 0;
-        GameObject newBullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
-        Bullet b = newBullet.GetComponent<Bullet>();
-        b.Init(angle, gameObject.tag);
+      currentWeapon.transform.position =  hands.position;
+      currentWeapon.angle = angle;
+      if (isFiring)
+      {
+          currentWeapon.Fire();
+      }
+        
         
     }
+    
     public virtual void takeDamage(float damage)
     {
         hp -= damage;
@@ -116,13 +109,26 @@ public class Soldier : MonoBehaviour
         if (IsHit)
         {
             spriteRenderer.enabled = !spriteRenderer.enabled;
+            currentWeapon.sr.enabled = !spriteRenderer.enabled;
             hitTimer -= Time.fixedDeltaTime;
             if (hitTimer <= 0)
             {
                 IsHit = false;
                 spriteRenderer.enabled = true;
-                
+                currentWeapon.sr.enabled = true;
             }
         }
+    }
+
+    public void EquipWeapon(Weapon w)
+    {
+        if (currentWeapon != null)
+        {
+            currentWeapon.isEquipped = false;
+            currentWeapon.OwnerTag = "";
+            currentWeapon.transform.parent = GameObject.Find("Weapons").transform;
+            currentWeapon = null;
+
+        } 
     }
 }

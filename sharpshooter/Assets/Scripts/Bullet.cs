@@ -19,7 +19,8 @@ public class Bullet : MonoBehaviour
         rb.linearVelocity = new Vector2(moveX, moveY);
         transform.parent = GameObject.Find("Bullets").transform;
         this.OwnerTag = OwnerTag;
-    }   
+    }
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -48,12 +49,26 @@ public class Bullet : MonoBehaviour
             Soldier S = hitObject.GetComponent<Enemy>();
             S.takeDamage(damage);
             Destroy(gameObject);
-        }else if (OwnerTag == "Emememy" && hitObject.CompareTag("Player"))
+        }
+        else if (OwnerTag == "Emememy" && hitObject.CompareTag("Player"))
         {
             Soldier S = hitObject.GetComponent<Player>();
             S.takeDamage(damage);
             Destroy(gameObject);
+        }else if (hitObject.CompareTag("Bouncywall"))
+        {
+            Wall w = hitObject.GetComponent<Wall>();
+            Bounce(w.GetNormal(transform.position));
         }
+
+    }
+
+    private void Bounce(Vector2 normal)
+    {
+        float b = rb.linearVelocity.x * normal.x + rb.linearVelocity.y * normal.y;
+        Vector2 bVector = b * normal;
         
+        Vector2 reflection = rb.linearVelocity - 2 * bVector;
+        rb.linearVelocity = reflection;
     }
 }
