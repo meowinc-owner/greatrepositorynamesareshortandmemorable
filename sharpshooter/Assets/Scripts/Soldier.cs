@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Soldier : MonoBehaviour
@@ -12,6 +13,7 @@ public class Soldier : MonoBehaviour
     protected Vector2 movementinput;
     protected Vector2 targetVelocity = Vector2.zero;
     
+    
     [Header("︻╦̵̵̿╤── ANIMSSS")]
     bool IsDead = false;
     bool IsMoving = false;
@@ -24,6 +26,7 @@ public class Soldier : MonoBehaviour
     public Transform hands;
 
     public Weapon currentWeapon;
+    public GameObject startingWeapon;
     
     
     protected virtual void Start()
@@ -31,6 +34,8 @@ public class Soldier : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); 
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        Weapon startingWeaponn = Instantiate(startingWeapon).GetComponent<Weapon>();
+        EquipWeapon(startingWeaponn);
     }
 
     // Update is called once per frame
@@ -128,7 +133,27 @@ public class Soldier : MonoBehaviour
             currentWeapon.OwnerTag = "";
             currentWeapon.transform.parent = GameObject.Find("Weapons").transform;
             currentWeapon = null;
+            
 
-        } 
+        }
+        
+        currentWeapon = w;
+        currentWeapon.isEquipped = true;
+        currentWeapon.OwnerTag = gameObject.tag;
+        currentWeapon.transform.parent = hands;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Weapon weapon = collision.gameObject.GetComponent<Weapon>();
+        if (weapon != null && !weapon.isEquipped)
+        {
+            EquipWeapon(weapon);            
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(currentWeapon.gameObject);
     }
 }

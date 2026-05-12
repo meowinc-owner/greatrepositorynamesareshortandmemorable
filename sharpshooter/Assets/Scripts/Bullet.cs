@@ -59,6 +59,8 @@ public class Bullet : MonoBehaviour
         {
             Wall w = hitObject.GetComponent<Wall>();
             Bounce(w.GetNormal(transform.position));
+            ColliderDistance2D cd = Physics2D.Distance(GetComponent<Collider2D>(), other);
+            rb.position += cd.normal * cd.distance;
         }
 
     }
@@ -70,5 +72,7 @@ public class Bullet : MonoBehaviour
         
         Vector2 reflection = rb.linearVelocity - 2 * bVector;
         rb.linearVelocity = reflection;
+        
+        
     }
 }

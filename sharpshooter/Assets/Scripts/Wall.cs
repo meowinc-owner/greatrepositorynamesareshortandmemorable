@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Wall : MonoBehaviour
 {
@@ -44,6 +45,33 @@ public class Wall : MonoBehaviour
         else
         {
             nearest.y = position.y;
+        }
+        
+        // Checking special case where bullet is inside of wall
+        if (position == nearest)
+        {
+            float toLeft = left-position.x;
+            float toTop = top-position.y;
+            float toRight = (left+width)-position.x;
+            float toBottom = (top-height)-position.y;
+
+            if (Mathf.Abs(toLeft) < Mathf.Abs(toRight) && Mathf.Abs(toLeft) < Mathf.Abs(toTop) &&
+                Mathf.Abs(toLeft) < Mathf.Abs(toBottom))
+            {
+                nearest.x += toLeft;
+            }else if (Mathf.Abs(toRight) < Mathf.Abs(toLeft) && Mathf.Abs(toRight) < Mathf.Abs(toTop) &&
+                      Mathf.Abs(toRight) < Mathf.Abs(toBottom))
+            {
+                nearest.x += toRight;
+            }else if(Mathf.Abs(toTop) < Mathf.Abs(toRight) && Mathf.Abs(toTop) < Mathf.Abs(toLeft) &&
+                     Mathf.Abs(toTop) < Mathf.Abs(toBottom))
+            {
+                nearest.y += toTop;
+            }
+            else
+            {
+                nearest.y += toBottom;
+            }
         }
         return nearest; // return nearest;
     }
