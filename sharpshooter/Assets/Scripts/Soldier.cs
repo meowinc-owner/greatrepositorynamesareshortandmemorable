@@ -152,8 +152,9 @@ public class Soldier : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         Destroy(currentWeapon.gameObject);
+        
     }
 }

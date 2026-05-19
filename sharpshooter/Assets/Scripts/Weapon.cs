@@ -48,4 +48,9 @@ public class Weapon : MonoBehaviour
     {
         shotTimer += Time.deltaTime;
     }
+    
+    private void OnDestroy()
+    {
+        GameManager.weapons.Remove(gameObject);
+    }
 }

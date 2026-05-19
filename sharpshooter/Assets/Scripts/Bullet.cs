@@ -24,6 +24,7 @@ public class Bullet : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        GameManager.bullets.Add(gameObject);
     }
 
     // Update is called once per frame
@@ -74,5 +75,10 @@ public class Bullet : MonoBehaviour
         rb.linearVelocity = reflection;
         
         
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.bullets.Remove(gameObject);
     }
 }

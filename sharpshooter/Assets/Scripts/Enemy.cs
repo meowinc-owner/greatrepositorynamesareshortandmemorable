@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
@@ -35,8 +36,14 @@ public class Enemy : Soldier
         targetAngle = Random.Range(0f, 360f);
         movementinput = new Vector2(Mathf.Cos(targetAngle * Mathf.Deg2Rad), Mathf.Sin(targetAngle * Mathf.Deg2Rad));
         aimPosition = (Vector2)transform.position + movementinput;
-        target = GameObject.FindGameObjectWithTag("Player").transform; //change if we add co-op
+        StartCoroutine(FindTarget());
         transform.parent = GameObject.Find("Enemies").transform;
+    }
+
+    IEnumerator FindTarget()
+    {
+        yield return null;
+        target = GameObject.FindGameObjectWithTag("Player").transform; //change if we add co-op
     }
 
     // Update is called once per frame
@@ -153,5 +160,11 @@ public class Enemy : Soldier
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, visionRange);
+    }
+    
+    protected override void OnDestroy()
+    {
+        GameManager.enemies.Remove(gameObject);
+        base.OnDestroy();
     }
 }

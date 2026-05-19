@@ -89,4 +89,9 @@ public class Wall : MonoBehaviour
         normal /= l;
         return normal;
     } 
+    
+    private void OnDestroy()
+    {
+        GameManager.walls.Remove(gameObject);
+    }
 }
