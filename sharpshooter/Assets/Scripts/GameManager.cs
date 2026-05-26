@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text hpText;
 
     private int levelsProgressed = 0;
+    
+    [SerializeField] private CountdownBeforeGame countdownBeforeGame;
 
     void Awake()
     {
@@ -54,6 +57,7 @@ public class GameManager : MonoBehaviour
             levelsProgressed++;
             levelNumber %= levels.Length; // when all levels compl, return to first lvl
             CreateLevel(levelNumber);
+            countdownBeforeGame.Restart();
         }
         else if (player != null)
         {
@@ -61,6 +65,9 @@ public class GameManager : MonoBehaviour
             enemiesText.text = "enemies left: " + enemies.Count;
             Soldier s = player.GetComponent<Soldier>();
             hpText.text = "health: " + s.hp;
+        }else if (player == null)
+        {
+            SceneManager.LoadScene("gameOver");
         }
     }
 
