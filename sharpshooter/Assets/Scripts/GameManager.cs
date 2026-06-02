@@ -111,6 +111,7 @@ public class GameManager : MonoBehaviour
                     if (pixel == playerColor)
                     {
                         player = Instantiate(playerPrefab, new Vector3(x, y, 0), Quaternion.identity);
+                        player.GetComponent<Soldier>().startingWeapon = weaponSelector.GetWeapon();
                     }else if (pixel == greenWallColor)
                     {
                         walls.Add(Instantiate(greenWallPrefab, new Vector3(x, y, 0), Quaternion.identity));

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class Player : Soldier
 { 
@@ -9,6 +10,12 @@ public class Player : Soldier
     private bool onGamepad = false;
     private Vector2 lastMouseInput;
     private Vector2 aimDirection;
+    public GameObject pointerPrefab;
+    private List<GameObject> pointers = new List<GameObject>();
+    public float minPointerDistance = 3f;
+    public float maxPointerDistance = 4f;
+    public float minEnemyDistance = 10f;
+    public float maxEnemyDistance = 35f;
     
 
     [Header("—⟪=====> Input")] 
@@ -79,5 +86,27 @@ public class Player : Soldier
         Vector3 mousePosition = cam.ScreenToWorldPoint(newInput);
         aimDirection = ((Vector2)mousePosition - (Vector2) transform.position).normalized;
         lastMouseInput =  newInput;
+    }
+
+    private void UpdatePointers()
+    {
+        while (pointers.Count < GameManager.enemies.Count)
+        {
+            pointers.Add(Instantiate(pointerPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity));
+        }
+
+        while (pointers.Count > GameManager.enemies.Count)
+        {
+            Destroy(pointers[pointers.Count - 1]);
+            pointers.RemoveAt(pointers.Count - 1);
+        }
+
+        for (int i = 0; i < pointers.Count; i++)
+        {
+            Vector2 enemyPosition = GameManager.enemies[i].transform.position;
+            float distanceToEnemy =  Mathf.Clamp(Vector2.Distance(transform.position, enemyPosition), minEnemyDistance, maxEnemyDistance);
+            float distanceToPointer = MathUtils.Remap(minEnemyDistance, maxEnemyDistance, minPointerDistance, maxPointerDistance, distanceToEnemy, minPointerDistance, maxPointerDistance);
+            Vector2 direction = (enemyPosition - (Vector2) transform.position).normalized;
+        }
     }
 }

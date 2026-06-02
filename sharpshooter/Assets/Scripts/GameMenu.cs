@@ -8,7 +8,7 @@ public class GameMenu : MonoBehaviour
     public TMP_Text doenstExitText;
     public void StartGame()
     {
-        SceneManager.LoadScene("game");
+        SceneManager.LoadScene("weaponSelect");
         
     }
 
