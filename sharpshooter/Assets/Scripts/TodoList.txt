@@ -1,12 +1,11 @@
 ﻿+-------------------------------------------------------------+
 |                     PROJECT TASK LIST                       |
 +-------------------------------------------------------------+
-|  COMPLETED       |  controller supp                         |
+|  COMPLETED       |  yaas                                    |
 +------------------+------------------------------------------+
-|  IN PROGRESS     |  Enemy Radar / Minimap                   |
+|  IN PROGRESS     |  Random Seed Procedural Levels           |
 |  NEXT UP         |  Audio / SFX                             |
 +------------------+------------------------------------------+
-|  BACKLOG         |  Random Seed Procedural Levels           |
-|                  |  Co-op for Controller Support            |
+|  BACKLOG         |  Co-op for Controller Support            |
 |                  |  Score Leaderboard                       |
 +-------------------------------------------------------------+

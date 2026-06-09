@@ -44,6 +44,7 @@ public class Player : Soldier
         aimPosition = transform.position + (Vector3) aimDirection;
         movementinput = moveAction.ReadValue<Vector2>();
         isFiring = shootAction.inProgress;
+        UpdatePointers();
         base.Update();
     }
 
@@ -97,7 +98,7 @@ public class Player : Soldier
 
         while (pointers.Count > GameManager.enemies.Count)
         {
-            Destroy(pointers[pointers.Count - 1]);
+            DestroyImmediate(pointers[pointers.Count - 1]);
             pointers.RemoveAt(pointers.Count - 1);
         }
 
@@ -107,6 +108,9 @@ public class Player : Soldier
             float distanceToEnemy =  Mathf.Clamp(Vector2.Distance(transform.position, enemyPosition), minEnemyDistance, maxEnemyDistance);
             float distanceToPointer = MathUtils.Remap(minEnemyDistance, maxEnemyDistance, minPointerDistance, maxPointerDistance, distanceToEnemy, minPointerDistance, maxPointerDistance);
             Vector2 direction = (enemyPosition - (Vector2) transform.position).normalized;
+            
+            pointers[i].transform.position = (Vector2) transform.position + direction * distanceToPointer;
+            pointers[i].transform.rotation = Quaternion.Euler(new Vector3(0,0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
         }
     }
 }

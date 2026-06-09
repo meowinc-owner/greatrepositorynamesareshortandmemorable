@@ -177,6 +177,11 @@ MonoBehaviour:
   hands: {fileID: 2765897039652116325}
   currentWeapon: {fileID: 0}
   startingWeapon: {fileID: 7523377899673962342, guid: f32eb5cceb5336448970ec6d48d46163, type: 3}
+  pointerPrefab: {fileID: 525216466189721327, guid: 28d94760f18b62148bb64fced5a7d04b, type: 3}
+  minPointerDistance: 2
+  maxPointerDistance: 3
+  minEnemyDistance: 10
+  maxEnemyDistance: 35
   actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!95 &2345306417044472096
 Animator:
