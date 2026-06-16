@@ -6,8 +6,8 @@ using System.Collections.Generic;
 public class RoomData : ScriptableObject
 {
     public GameObject prefab;
-    public List<GameObject> validLeftNeighbours = new List<GameObject>();
-    public List<GameObject> validRightNeighbours = new List<GameObject>();
-    public List<GameObject> validUpNeighbours = new List<GameObject>();
-    public List<GameObject> validDownNeighbours = new List<GameObject>();
+    public List<RoomData> validLeftNeighbours = new List<RoomData>();
+    public List<RoomData> validRightNeighbours = new List<RoomData>();
+    public List<RoomData> validUpNeighbours = new List<RoomData>();
+    public List<RoomData> validDownNeighbours = new List<RoomData>();
 }
