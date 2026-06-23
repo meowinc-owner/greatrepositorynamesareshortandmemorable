@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 using Unity.Cinemachine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour
     
     [Header("the level maker pieces ✌️")]
     public int levelNumber = 0;
+
+    public bool proceeduralGenerate;
+    private WFCmanager wfcman;
 
     public Texture2D[] levels;
     public CinemachineCamera cam;
@@ -45,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        wfcman = GetComponent<WFCmanager>();
         CreateLevel(levelNumber);
     }
 
@@ -96,10 +101,62 @@ public class GameManager : MonoBehaviour
         walls.Clear();
         weapons.Clear();
     }
-    
-    public void CreateLevel(int LevelNumber)
+
+    public void CreateLevel(int levelNumber)
     {
         ResetGame();
+        if (!proceeduralGenerate)
+        {
+            CreateLevelFromPicture(levelNumber);
+        }
+        else
+        {
+            CreateLevelProceedural();
+        }
+    }
+
+    public void CreateLevelProceedural()
+    {
+        Cell[,] grid = wfcman.GenerateMap();
+        Vector3 currentRoomPosition = new Vector3(- wfcman.gridSize / 2 * wfcman.cellSize, -wfcman.gridSize / 2 * wfcman.cellSize, 0);
+        List<GameObject> spawnedRooms = new List<GameObject>();
+        for (int x = 0; x < grid.GetLength(0); x++)
+        {
+            currentRoomPosition.y = -wfcman.gridSize / 2 * wfcman.cellSize;
+            for (int y = 0; y < grid.GetLength(1); y++)
+            {
+                GameObject newRoom = Instantiate(grid[x,y].collapsedRoomData.prefab, currentRoomPosition, Quaternion.identity);
+                spawnedRooms.Add(newRoom);
+                currentRoomPosition += new Vector3(0,wfcman.cellSize, 0);
+            }
+
+            currentRoomPosition += new Vector3(wfcman.cellSize, 0, 0);
+            
+        }
+        
+        player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        player.GetComponent<Soldier>().startingWeapon = weaponSelector.GetWeapon();
+
+        for (int i = 0; i < spawnedRooms.Count; i++)
+        {
+            Wall[] tempWalls = spawnedRooms[i].GetComponentsInChildren<Wall>();
+            foreach(Wall w in tempWalls)
+            {
+                walls.Add(w.gameObject);
+            }
+            
+            Enemy[] tempEnemies = spawnedRooms[i].GetComponentsInChildren<Enemy>();
+            foreach(Enemy e in tempEnemies)
+            {
+                enemies.Add(e.gameObject);
+            }
+        }
+        cam.Follow = player.transform;
+        cam.LookAt = player.transform;
+    }
+    
+    public void CreateLevelFromPicture(int LevelNumber)
+    {
         if (LevelNumber >= 0 && LevelNumber < levels.Length)
         {
             Texture2D level = levels[LevelNumber];

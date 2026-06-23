@@ -491,6 +491,7 @@ GameObject:
   - component: {fileID: 696431469}
   - component: {fileID: 696431468}
   - component: {fileID: 696431470}
+  - component: {fileID: 696431471}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -511,6 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   levelNumber: 0
+  proceeduralGenerate: 1
   levels:
   - {fileID: 2800000, guid: b3a37fc7b0403be43bc74eaee9676340, type: 3}
   cam: {fileID: 116822186}
@@ -566,6 +568,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CountdownBeforeGame
   countdownTime: 5
   countdownText: {fileID: 894462570}
+--- !u!114 &696431471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696431467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0f2f97e65d64c4191d9cfab553f45a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WFCmanager
+  cellSize: 8
+  gridSize: 10
+  emptyRoom: {fileID: 11400000, guid: c6b8e69cdf607d24f815214a8e2b5e91, type: 2}
+  totalRooms:
+  - {fileID: 11400000, guid: 85a781f0a522c2540a0e9881e63f1a36, type: 2}
+  - {fileID: 11400000, guid: 7c12bde89d80f8e4299ffe795c72d8fe, type: 2}
+  - {fileID: 11400000, guid: 613a62d6da4129f469f8af18748fe7bb, type: 2}
+  - {fileID: 11400000, guid: c6b8e69cdf607d24f815214a8e2b5e91, type: 2}
 --- !u!1 &803275440
 GameObject:
   m_ObjectHideFlags: 0

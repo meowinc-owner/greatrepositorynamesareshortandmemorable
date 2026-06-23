@@ -14,14 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
   prefab: {fileID: 2950780692864812076, guid: 42b938c014836984b99ad40fe67d29bc, type: 3}
   validLeftNeighbours:
-  - {fileID: 2112770102078269345, guid: b34e41cf96f8a8049b1aeb2bed737771, type: 3}
-  - {fileID: 8216033908150212354, guid: 2c83d24b28813b24e84bf25cd30c8f07, type: 3}
-  - {fileID: 8426257994230763390, guid: b7a8481490b38a34aa6eca6cedc7b982, type: 3}
+  - {fileID: 11400000, guid: 85a781f0a522c2540a0e9881e63f1a36, type: 2}
+  - {fileID: 11400000}
+  - {fileID: 11400000, guid: 613a62d6da4129f469f8af18748fe7bb, type: 2}
+  - {fileID: 11400000, guid: c6b8e69cdf607d24f815214a8e2b5e91, type: 2}
   validRightNeighbours:
-  - {fileID: 8216033908150212354, guid: 2c83d24b28813b24e84bf25cd30c8f07, type: 3}
+  - {fileID: 11400000, guid: 85a781f0a522c2540a0e9881e63f1a36, type: 2}
+  - {fileID: 11400000}
+  - {fileID: 11400000, guid: 613a62d6da4129f469f8af18748fe7bb, type: 2}
+  - {fileID: 11400000, guid: c6b8e69cdf607d24f815214a8e2b5e91, type: 2}
   validUpNeighbours:
-  - {fileID: 8216033908150212354, guid: 2c83d24b28813b24e84bf25cd30c8f07, type: 3}
-  - {fileID: 8426257994230763390, guid: b7a8481490b38a34aa6eca6cedc7b982, type: 3}
+  - {fileID: 11400000, guid: 85a781f0a522c2540a0e9881e63f1a36, type: 2}
+  - {fileID: 11400000}
+  - {fileID: 11400000, guid: 613a62d6da4129f469f8af18748fe7bb, type: 2}
+  - {fileID: 11400000, guid: c6b8e69cdf607d24f815214a8e2b5e91, type: 2}
   validDownNeighbours:
-  - {fileID: 8216033908150212354, guid: 2c83d24b28813b24e84bf25cd30c8f07, type: 3}
-  - {fileID: 2950780692864812076, guid: 42b938c014836984b99ad40fe67d29bc, type: 3}
+  - {fileID: 11400000, guid: 85a781f0a522c2540a0e9881e63f1a36, type: 2}
+  - {fileID: 11400000}
+  - {fileID: 11400000, guid: 613a62d6da4129f469f8af18748fe7bb, type: 2}
+  - {fileID: 11400000, guid: c6b8e69cdf607d24f815214a8e2b5e91, type: 2}

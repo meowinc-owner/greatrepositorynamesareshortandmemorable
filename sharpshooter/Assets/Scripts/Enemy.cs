@@ -43,7 +43,7 @@ public class Enemy : Soldier
     IEnumerator FindTarget()
     {
         yield return null;
-        target = GameObject.FindGameObjectWithTag("Player").transform; //change if we add co-op
+        target = GameObject.FindGameObjectWithTag("Player").transform; //change if we add co-op (note from june 2026: <--- never happening)
     }
 
     // Update is called once per frame

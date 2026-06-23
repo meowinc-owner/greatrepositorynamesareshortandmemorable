@@ -6,11 +6,14 @@ public class WFCmanager : MonoBehaviour
     
     public float cellSize; // size of cell in worldspace units
     public int gridSize; // how many rooms on 1 axis
+    public RoomData emptyRoom;
     public List<RoomData> totalRooms = new List<RoomData>(); // all possible rooms in the game
     private Cell[,] _grid; // grid for cells
+    
 
-    public void GenerateMap() // for generating map: what rooms go where and spawming
+    public Cell[,] GenerateMap() // for generating map: what rooms go where and spawming
     {
+        
         _grid = new Cell[gridSize, gridSize]; // creates grid and lays out spaces for all cells
         for (int x = 0; x < gridSize; x++) // goes over grid size for x value
         {
@@ -21,6 +24,9 @@ public class WFCmanager : MonoBehaviour
             }
         }
         
+        int middleOfGrid = gridSize / 2; // for getting the middle of the grid of rooms (eg. grid is 10 x 10, middle room would be 5,5)
+        _grid[middleOfGrid,middleOfGrid].Collapse(emptyRoom);
+        UpdateNeighbours(new Vector2Int(middleOfGrid, middleOfGrid));
         
         // filling out rooms 
 
@@ -51,13 +57,18 @@ public class WFCmanager : MonoBehaviour
                 }
             }
 
-            List<RoomData> Rooms = _grid[lowestEntropyX, lowestEntropyY].possibleRooms; // grabbing a copy of the possible rooms for the room we're filling 👍
-            int roomIndex = Random.Range(0, Rooms.Count); // random number between 0 and number of possible rooms
-            _grid[lowestEntropyX, lowestEntropyY].Collapse(Rooms[roomIndex]); // pick room at that number
+            if (lowestEntropyX >= 0 && lowestEntropyY >= 0)
+            {
+                List<RoomData> Rooms = _grid[lowestEntropyX, lowestEntropyY].possibleRooms; // grabbing a copy of the possible rooms for the room we're filling 👍
+                int roomIndex = Random.Range(0, Rooms.Count); // random number between 0 and number of possible rooms
+                _grid[lowestEntropyX, lowestEntropyY].Collapse(Rooms[roomIndex]); // pick room at that number
             
-            // yahoo done all comments 🥳🥳🥳🥳
-            UpdateNeighbours(new Vector2Int(lowestEntropyX, lowestEntropyY));
+                // yahoo done all comments 🥳🥳🥳🥳
+                UpdateNeighbours(new Vector2Int(lowestEntropyX, lowestEntropyY));
+            }
         }
+
+        return _grid;
     }
 
     private void UpdateNeighbours(Vector2Int pos)
