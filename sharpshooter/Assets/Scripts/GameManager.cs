@@ -1,10 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
-using NUnit.Framework.Constraints;
 using Unity.Cinemachine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using Pathfinding;
 
 public class GameManager : MonoBehaviour
 {
