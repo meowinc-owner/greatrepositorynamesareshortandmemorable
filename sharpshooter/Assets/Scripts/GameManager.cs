@@ -4,6 +4,7 @@ using NUnit.Framework.Constraints;
 using Unity.Cinemachine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Pathfinding;
 
 public class GameManager : MonoBehaviour
 {
@@ -113,6 +114,30 @@ public class GameManager : MonoBehaviour
         {
             CreateLevelProceedural();
         }
+        
+        // disable everything but walls, scan, and reenable everything for pathfinding to properly work fine :D
+
+        // disable stuff
+        foreach (var e in enemies)
+        {
+            e.SetActive(false);
+            
+        }
+        player.SetActive(false);
+        
+        // scan
+        if (AstarPath.active != null)
+        {
+            AstarPath.active.Scan();
+        }
+        
+        // re-enable stuff
+        foreach (var e in enemies)
+        {
+            e.SetActive(true);
+            
+        }
+        player.SetActive(true);
     }
 
     public void CreateLevelProceedural()

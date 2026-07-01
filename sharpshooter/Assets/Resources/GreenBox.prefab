@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 623390811901274983}
   - component: {fileID: 1379609811263479364}
   - component: {fileID: 7227719285668437656}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GreenBox
   m_TagString: Bouncywall
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &623390811901274983
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -93,6 +93,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &1379609811263479364
 BoxCollider2D:
   m_ObjectHideFlags: 0

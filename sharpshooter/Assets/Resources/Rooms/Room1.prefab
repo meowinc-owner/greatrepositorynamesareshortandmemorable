@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6482120305223341986}
   - component: {fileID: 9119337746534828841}
   - component: {fileID: 3288417925597021188}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlueBox (2)
   m_TagString: Bouncywall
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6482120305223341986
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -93,6 +93,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &9119337746534828841
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -163,7 +164,7 @@ GameObject:
   - component: {fileID: 6205016294679668151}
   - component: {fileID: 8171744407105468732}
   - component: {fileID: 2471198344240150033}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlueBox
   m_TagString: Bouncywall
   m_Icon: {fileID: 0}
@@ -187,7 +188,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6205016294679668151
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -244,6 +245,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &8171744407105468732
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -357,7 +359,7 @@ GameObject:
   - component: {fileID: 7565638531673052904}
   - component: {fileID: 2672583539740348685}
   - component: {fileID: 6504563666546000263}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlueBox (17)
   m_TagString: Bouncywall
   m_Icon: {fileID: 0}
@@ -381,7 +383,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7565638531673052904
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -438,6 +440,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &2672583539740348685
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -508,7 +511,7 @@ GameObject:
   - component: {fileID: 8878849472738907548}
   - component: {fileID: 6648291351038150935}
   - component: {fileID: 1112338742839313978}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlueBox (4)
   m_TagString: Bouncywall
   m_Icon: {fileID: 0}
@@ -532,7 +535,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8878849472738907548
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -589,6 +592,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &6648291351038150935
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -690,7 +694,7 @@ GameObject:
   - component: {fileID: 7893056772282433819}
   - component: {fileID: 5400587945651002768}
   - component: {fileID: 1863951401280934589}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlueBox (3)
   m_TagString: Bouncywall
   m_Icon: {fileID: 0}
@@ -714,7 +718,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7893056772282433819
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -771,6 +775,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &5400587945651002768
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -841,7 +846,7 @@ GameObject:
   - component: {fileID: 7846298246282483312}
   - component: {fileID: 5447347708452539131}
   - component: {fileID: 1780177573127636438}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlueBox (1)
   m_TagString: Bouncywall
   m_Icon: {fileID: 0}
@@ -865,7 +870,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7846298246282483312
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -922,6 +927,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &5447347708452539131
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -992,7 +998,7 @@ GameObject:
   - component: {fileID: 8891309216359544339}
   - component: {fileID: 8308592097872580009}
   - component: {fileID: 6402398631261626948}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlueBox (5)
   m_TagString: Bouncywall
   m_Icon: {fileID: 0}
@@ -1016,7 +1022,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8891309216359544339
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1073,6 +1079,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &8308592097872580009
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1143,7 +1150,7 @@ GameObject:
   - component: {fileID: 102821227575000907}
   - component: {fileID: 1009592912263875276}
   - component: {fileID: 8962450079422643324}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlueBox (18)
   m_TagString: Bouncywall
   m_Icon: {fileID: 0}
@@ -1167,7 +1174,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &102821227575000907
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1224,6 +1231,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &1009592912263875276
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1294,7 +1302,7 @@ GameObject:
   - component: {fileID: 855394483186981871}
   - component: {fileID: 1617526438318418275}
   - component: {fileID: 4512977375563450907}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlueBox (16)
   m_TagString: Bouncywall
   m_Icon: {fileID: 0}
@@ -1318,7 +1326,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &855394483186981871
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1375,6 +1383,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &1617526438318418275
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1445,7 +1454,7 @@ GameObject:
   - component: {fileID: 2614158343212566377}
   - component: {fileID: 4847940430009480302}
   - component: {fileID: 2916273772293849506}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlueBox (6)
   m_TagString: Bouncywall
   m_Icon: {fileID: 0}
@@ -1469,7 +1478,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2614158343212566377
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1526,6 +1535,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &4847940430009480302
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1596,7 +1606,7 @@ GameObject:
   - component: {fileID: 2502155328895753158}
   - component: {fileID: 414905439059478349}
   - component: {fileID: 6264121975304439904}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlueBox (7)
   m_TagString: Bouncywall
   m_Icon: {fileID: 0}
@@ -1620,7 +1630,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2502155328895753158
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1677,6 +1687,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &414905439059478349
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1774,7 +1785,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1013388968314139702
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1831,6 +1842,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!58 &3993751341180375878
 CircleCollider2D:
   m_ObjectHideFlags: 0

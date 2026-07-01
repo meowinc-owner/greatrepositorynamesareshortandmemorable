@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7689461208397927528}
   - component: {fileID: 3102976566470433468}
   - component: {fileID: 8041863196869353847}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OrangeBox
   m_TagString: Bouncywall
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7689461208397927528
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -93,6 +93,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &3102976566470433468
 BoxCollider2D:
   m_ObjectHideFlags: 0

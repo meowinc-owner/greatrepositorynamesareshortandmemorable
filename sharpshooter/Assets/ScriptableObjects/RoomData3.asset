@@ -14,9 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
   prefab: {fileID: 8426257994230763390, guid: b7a8481490b38a34aa6eca6cedc7b982, type: 3}
   validLeftNeighbours:
-  - {fileID: 11400000, guid: 85a781f0a522c2540a0e9881e63f1a36, type: 2}
-  - {fileID: 11400000, guid: 7c12bde89d80f8e4299ffe795c72d8fe, type: 2}
-  - {fileID: 11400000}
   - {fileID: 11400000, guid: c6b8e69cdf607d24f815214a8e2b5e91, type: 2}
   validRightNeighbours:
   - {fileID: 11400000, guid: 85a781f0a522c2540a0e9881e63f1a36, type: 2}
@@ -24,12 +21,8 @@ MonoBehaviour:
   - {fileID: 11400000}
   - {fileID: 11400000, guid: c6b8e69cdf607d24f815214a8e2b5e91, type: 2}
   validUpNeighbours:
-  - {fileID: 11400000, guid: 85a781f0a522c2540a0e9881e63f1a36, type: 2}
-  - {fileID: 11400000, guid: 7c12bde89d80f8e4299ffe795c72d8fe, type: 2}
-  - {fileID: 11400000}
   - {fileID: 11400000, guid: c6b8e69cdf607d24f815214a8e2b5e91, type: 2}
   validDownNeighbours:
   - {fileID: 11400000, guid: 85a781f0a522c2540a0e9881e63f1a36, type: 2}
-  - {fileID: 11400000, guid: 7c12bde89d80f8e4299ffe795c72d8fe, type: 2}
   - {fileID: 11400000}
   - {fileID: 11400000, guid: c6b8e69cdf607d24f815214a8e2b5e91, type: 2}

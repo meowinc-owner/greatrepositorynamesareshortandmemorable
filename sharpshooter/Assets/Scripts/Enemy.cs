@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using Pathfinding;
 
 public class Enemy : Soldier
 {
@@ -19,7 +20,13 @@ public class Enemy : Soldier
     private float targetAngle;
     public float visionRange = 5.6f;
     public Transform target;
-
+    private Seeker skr;
+    private Path path;
+    private int CurrentWaypoint = 0;
+    private Vector3 targetPosition = new Vector3(6000f, 6000f, 0f);
+    
+    
+        
     private enum EnemyState
     {
         WANDER = 0,
@@ -38,6 +45,9 @@ public class Enemy : Soldier
         aimPosition = (Vector2)transform.position + movementinput;
         StartCoroutine(FindTarget());
         transform.parent = GameObject.Find("Enemies").transform;
+        skr = GetComponent<Seeker>();
+        InvokeRepeating(nameof(UpdatePath), 0, 0.5f);
+        
     }
 
     IEnumerator FindTarget()
@@ -111,12 +121,13 @@ public class Enemy : Soldier
 
     private void CheckVisionRange()
     {
-        if (target == null)
+        if (target != null)
         {
-            return;
+            targetPosition = target.position;
+            
             
         }
-        Vector3 toTarget = target.position - transform.position;
+        Vector3 toTarget = targetPosition - transform.position;
         toTarget.z = 0f;
         float distance = toTarget.magnitude;
         if (distance <= visionRange)
@@ -136,12 +147,14 @@ public class Enemy : Soldier
             TurnTime = Mathf.Abs(diff) / TurnSpeed;
             currentWanderTime =  Random.Range(minWanderTime, maxWanderTime);
             targetAngle = angle;
+            targetPosition = new Vector3(6000f, 6000f, 0f);
         }
     }
 
     private void chase()
     {
-        Vector3 toTarget = target.position - transform.position;
+        Vector3 toTarget = targetPosition - transform.position;
+        
         toTarget.z = 0f;
         float distance = toTarget.magnitude;
         aimPosition = (Vector2)transform.position + (Vector2)toTarget.normalized;
@@ -152,7 +165,21 @@ public class Enemy : Soldier
         }
         else
         {
-            movementinput = (Vector2)toTarget.normalized;
+            if (path != null && CurrentWaypoint < path.vectorPath.Count)
+            {
+                Vector3 toWaypoint = path.vectorPath[CurrentWaypoint] -  transform.position;
+                toWaypoint.z = 0f;
+                movementinput = toWaypoint.normalized;
+                if (toWaypoint.magnitude < 0.5f)
+                {
+                    CurrentWaypoint++;
+                }
+            }
+            else
+            {
+                movementinput = (Vector2)toTarget.normalized;
+            }
+            
         }
     }
 
@@ -167,4 +194,23 @@ public class Enemy : Soldier
         GameManager.enemies.Remove(gameObject);
         base.OnDestroy();
     }
+
+    private void UpdatePath()
+    {
+        if (target != null && skr.IsDone())
+        {
+            skr.StartPath(transform.position, targetPosition, OnPathComplete);
+        }
+    }
+
+    private void OnPathComplete(Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            CurrentWaypoint = 0;
+        }
+    }
+    
+    
 }

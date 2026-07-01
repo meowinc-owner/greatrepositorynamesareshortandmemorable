@@ -35,6 +35,7 @@ public class Player : Soldier
         
         cam = Camera.main;
         
+        InvokeRepeating(nameof(HealMePlease),0, 1);
     }
     
     // ⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘ UPDATE ⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘
@@ -46,6 +47,11 @@ public class Player : Soldier
         isFiring = shootAction.inProgress;
         UpdatePointers();
         base.Update();
+
+        float temphp = hp;
+        temphp *= 2f;
+        int inthp = Mathf.RoundToInt(temphp);
+        hp = Mathf.Clamp((float) inthp / 2f, 0f, 5f);
     }
 
     // ⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘ EEEEE ⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘
@@ -111,6 +117,15 @@ public class Player : Soldier
             
             pointers[i].transform.position = (Vector2) transform.position + direction * distanceToPointer;
             pointers[i].transform.rotation = Quaternion.Euler(new Vector3(0,0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
+        }
+    }
+
+    private void HealMePlease()
+    {
+        if (hp < 5f)
+        {
+            hp += 0.5f;
+            hp = Mathf.Clamp(hp, 0, 5);
         }
     }
 }
